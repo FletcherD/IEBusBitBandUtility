@@ -148,8 +148,9 @@ Examples:
 
 		buf = ''.join(signal)
 
-	# Post-process the bit sequence
-	buf = buf.strip('1')  # Remove leading/trailing idle bits
+	# Add idle bits either side
+	buf = buf.strip('1')
+	buf = '1' * 10000 + buf + '1' * 10000
 	
 	# Add glitch bits for driver robustness testing
 	if args.glitch != 0:

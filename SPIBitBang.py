@@ -15,6 +15,7 @@ spi = spidev.SpiDev()
 spi.open(0, 0)  # Bus 0, Device 0
 spi.max_speed_hz = 1000000  # 1MHz to match IEBus bit rate
 spi.bits_per_word = 8
+spi.mode = 2
 
 bitRate = spi.max_speed_hz
 print(f"SPI bit rate configured: {bitRate} Hz")

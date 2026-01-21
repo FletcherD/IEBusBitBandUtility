@@ -136,8 +136,9 @@ class IEBusMessage:
 			broadcast = (IEBusMessage.BroadcastValue.BROADCAST if message_parts[0] == 'B' else IEBusMessage.BroadcastValue.UNICAST)
 			master_address = int(message_parts[1], 16)
 			slave_address = int(message_parts[2], 16)
-			control = 0xF
-			data = [int(dStr, 16) for dStr in message_parts[3:]]
+			control = int(message_parts[3], 16)
+			# message_parts[4] is the data length, but we don't need it - just use remaining parts
+			data = [int(dStr, 16) for dStr in message_parts[5:]]
 
 		# Extra bytes are to ensure we can unpack a value from the very end
 		self.message_bytes = bytearray(IEBusMessage.MaxMessageLenBytes + 4)
